@@ -69,6 +69,9 @@ app.get("/pollution", function (req, res) {
     });
   });
 });
+app.get("/traffic", function (req, res) {
+  res.sendFile(__dirname + "/traffic.html");
+});
 
 app.listen(3000, function () {
   console.log("Server started at port 3000");
