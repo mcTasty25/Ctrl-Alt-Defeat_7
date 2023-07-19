@@ -1,3 +1,8 @@
+<form action="/pollution" method="post">
+  <input type="text" name="city" placeholder="Enter city" />
+  <button type="submit">Go</button>
+</form>
+
 <% if (airQualityIndex>0 && airQualityIndex<=50) { %>
 <h1>The air quality is Good.</h1>
 <h1>Current AQI: <%= airQualityIndex%></h1>

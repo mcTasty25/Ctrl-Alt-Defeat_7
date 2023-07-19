@@ -1,3 +1,8 @@
+<form action="/traffic" method="post">
+  <input type="text" name="city" placeholder="Enter city" />
+  <button type="submit">Go</button>
+</form>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -17,13 +22,14 @@
         padding: 0px;
       }
     </style>
+    <p><%= lat %></p>
+    <p><%= long%></p>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script>
       function initialize() {
-        var myLatlng = new google.maps.LatLng(
-          34.04924594193164,
-          -118.24104309082031
-        );
+        var latitude = "<%= lat%>";
+        var longitude = "<%= long%>";
+        var myLatlng = new google.maps.LatLng(latitude, longitude);
         var mapOptions = {
           zoom: 13,
           center: myLatlng,

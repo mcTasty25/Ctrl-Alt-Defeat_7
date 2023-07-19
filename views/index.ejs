@@ -1,2 +1,7 @@
-<h1>The Temperature in <%= query%> is <%= temp %> Degrees Celcius.</h1>
-<h1>The weater is: <%= weatherDescription%></h1>
+<form action="/" method="post">
+  <input type="text" name="city" placeholder="Enter city" />
+  <button type="submit">Go</button>
+</form>
+
+<h1>The Temperature in <%=city%> is <%= temp %> Degrees Celcius.</h1>
+<h1>Humidity: <%= humidity%></h1>
