@@ -1,25 +1,26 @@
 {
   "name": "hex",
   "version": "1.0.0",
-  "description": "HEx Hackathon",
+  "description": "HEx-Ctrl+Alt+Defeat",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mcTasty25/HEX.git"
+    "url": "git+https://github.com/mcTasty25/Ctrl-Alt-Defeat_7.git"
   },
   "author": "Subodh Pokhrel",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mcTasty25/HEX/issues"
+    "url": "https://github.com/mcTasty25/Ctrl-Alt-Defeat_7/issues"
   },
-  "homepage": "https://github.com/mcTasty25/HEX#readme",
+  "homepage": "https://github.com/mcTasty25/Ctrl-Alt-Defeat_7#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "https": "^1.0.0",
     "nodemon": "^3.0.1"
   }
 }
