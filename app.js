@@ -1,6 +1,7 @@
 const express = require("express");
 const https = require("https");
 const bodyParser = require("body-parser");
+require("dotenv").config();
 
 const app = express();
 
@@ -8,7 +9,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", function (req, res) {
-  const apiKey = "28cf63de-3ecf-4168-b31d-63a0c075bce8";
+  const apiKey = process.env.apiKey;
   const defaultCity = "Kathmandu";
   const Weather_url =
     "https://api.airvisual.com/v2/city?city=" +
@@ -26,7 +27,7 @@ app.get("/", function (req, res) {
   });
 });
 app.post("/", function (req, res) {
-  const apiKey = "28cf63de-3ecf-4168-b31d-63a0c075bce8";
+  const apiKey = process.env.apiKey;
   const currentCity = req.body.city;
   const Weather_url =
     "https://api.airvisual.com/v2/city?city=" +
@@ -47,7 +48,7 @@ app.post("/", function (req, res) {
 
 app.get("/pollution", function (req, res) {
   const defaultCity = "Kathmandu";
-  const apiKey = "28cf63de-3ecf-4168-b31d-63a0c075bce8";
+  const apiKey = process.env.apiKey;
   const Pollution_url =
     "https://api.airvisual.com/v2/city?city=" +
     defaultCity +
@@ -65,7 +66,7 @@ app.get("/pollution", function (req, res) {
 
 app.post("/pollution", function (req, res) {
   const currentCity = req.body.city;
-  const apiKey = "28cf63de-3ecf-4168-b31d-63a0c075bce8";
+  const apiKey = process.env.apiKey;
   const Pollution_url =
     "https://api.airvisual.com/v2/city?city=" +
     currentCity +
@@ -83,7 +84,7 @@ app.post("/pollution", function (req, res) {
 
 app.get("/traffic", function (req, res) {
   const defaultCity = "Kathmandu";
-  const apiKey = "28cf63de-3ecf-4168-b31d-63a0c075bce8";
+  const apiKey = process.env.apiKey;
   const locationUrl =
     "https://api.airvisual.com/v2/city?city=" +
     defaultCity +
@@ -100,7 +101,7 @@ app.get("/traffic", function (req, res) {
 });
 app.post("/traffic", function (req, res) {
   const currentCity = req.body.city;
-  const apiKey = "28cf63de-3ecf-4168-b31d-63a0c075bce8";
+  const apiKey = process.env.apiKey;
   const locationUrl =
     "https://api.airvisual.com/v2/city?city=" +
     currentCity +
