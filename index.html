@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{websitename}}</title>
+    <title>{{Website}}</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
 </head>
+
 <body>
+
     <header class="header">
-        <div class="logo">{{websitename}}</div>
+        <div class="logo">{{Website}}</div>
         <nav class="nav">
             <ul class="navbar">
                 <li><a href="index.html">Home</a></li>
@@ -21,7 +26,63 @@
             </ul>
         </nav>
     </header>
+    
+        <div class="top-notice">
+            <div class="notice-container">
+                <div class="notice-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="notice-content">
+                    This is an important notice. Please read it carefully.
+                </div>
+            </div>
+        </div>
+
+        <div class="main-heading">
+            <h1>Today in Kathmandu</h1>
+        </div>
+
+        <div class="landing-content">
+            <div class="live-data">
+                <div class="weather-card">
+                    <div class="card-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <div class="card-data">
+                        <p>16°C</p>
+                    </div>
+                </div>
+                <div class="pollution-card">
+                    <div class="card-icon">
+                        <i class="fas fa-smog"></i>
+                    </div>
+                    <div class="card-data">
+                        <p>PM 2.5</p>
+                    </div>
+
+                </div>
+                <div class="forecast-link">
+                    <a href="forecast.html">Forecast</a>
+                </div>
+            
+            <div class="suggestion-card">
+                <p>Suggested to carry umbrella</p>
+            </div>
+        </div>
+
+            <div class="events-list">
+                <h4>Events</h4>
+            </div>
+
+            <div class="live-traffic">
+                <h4>Live Traffic</h4>
+            </div>
+
+        </div>
+    
 
     <script src="script.js"></script>
+    </div>
 </body>
+
 </html>
