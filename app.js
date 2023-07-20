@@ -29,10 +29,8 @@ app.get("/home", function (req, res) {
     "&state=Central%20Region&country=Nepal&key=" +
     apiKey;
 
-  // Variables to store the fetched data
   let temp, city, airQualityIndex, lat, long;
 
-  // Make the API calls
   https.get(Weather_url, function (weatherResponse) {
     let weatherData = "";
 
@@ -47,7 +45,6 @@ app.get("/home", function (req, res) {
       humidity = parsedWeatherData.data.current.weather.hu;
       windSpeed = parsedWeatherData.data.current.weather.ws;
 
-      // Call the next API after the first API response is received
       https.get(Pollution_url, function (pollutionResponse) {
         let pollutionData = "";
 
@@ -59,7 +56,6 @@ app.get("/home", function (req, res) {
           const parsedPollutionData = JSON.parse(pollutionData);
           airQualityIndex = parsedPollutionData.data.current.pollution.aqius;
 
-          // Call the third API after the second API response is received
           https.get(locationUrl, function (locationResponse) {
             let locationData = "";
 
@@ -71,17 +67,14 @@ app.get("/home", function (req, res) {
               try {
                 const parsedLocationData = JSON.parse(locationData);
 
-                // Check if the location data and coordinates exist before accessing them
                 if (parsedLocationData?.data?.location?.coordinates) {
                   lat = parsedLocationData.data.location.coordinates[1];
                   long = parsedLocationData.data.location.coordinates[0];
                 } else {
-                  // Set default values if coordinates are not available
                   lat = 27.7;
                   long = 85.31;
                 }
 
-                // Render the template after all API data is fetched
                 res.render("home", {
                   temp,
                   humidity,
@@ -92,9 +85,7 @@ app.get("/home", function (req, res) {
                   long,
                 });
               } catch (error) {
-                // Handle any errors that may occur during parsing or API calls
                 console.error("Error processing API response:", error);
-                // Redirect to an error page or display an error message to the user
                 res.status(500).send("Internal Server Error");
               }
             });
