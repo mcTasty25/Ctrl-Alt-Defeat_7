@@ -1,0 +1,24 @@
+<form action="/pollution" method="post">
+  <input type="text" name="city" placeholder="Enter city" />
+  <button type="submit">Go</button>
+</form>
+
+<% if (airQualityIndex>0 && airQualityIndex<=50) { %>
+<h1>The air quality is Good.</h1>
+<h1>Current AQI: <%= airQualityIndex%></h1>
+<% } else if (airQualityIndex>50 && airQualityIndex<=100) { %>
+<h1>The air quality is Fair.</h1>
+<h1>Current AQI: <%= airQualityIndex%></h1>
+<% } else if (airQualityIndex>100 && airQualityIndex<=150) { %>
+<h1>The air quality is Moderate.</h1>
+<h1>Current AQI: <%= airQualityIndex%></h1>
+<% } else if (airQualityIndex>150 && airQualityIndex<=200) { %>
+<h1>The air quality is Unhealthy.</h1>
+<h1>Current AQI: <%= airQualityIndex%></h1>
+<% } else if (airQualityIndex>200 && airQualityIndex<=300) { %>
+<h1>The air quality is Very Unhealthy.</h1>
+<h1>Current AQI: <%= airQualityIndex%></h1>
+<% } else { %>
+<h1>The air quality is Hazardous.</h1>
+<h1>Current AQI: <%= airQualityIndex%></h1>
+<% } %>
