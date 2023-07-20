@@ -193,27 +193,9 @@ app.post("/traffic", function (req, res) {
   });
 });
 
-const con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "password",
-  database: "hexgenius",
-});
-
 app.get("/emergency", function (req, res) {
-  const sql = "SELECT * FROM impcontacts";
-  con.query(sql, (err, result) => {
-    if (err) throw err;
-    const results = JSON.parse(JSON.stringify(result));
-    const cname = results.map((item) => item.name);
-    const phno = results.map((item) => item.phone_number);
-    res.render("emergency", { cname, phno });
+    res.render("emergency");
   });
-});
-
-app.get("/contacts", function (req, res) {
-  res.render("contacts");
-});
 
 app.get("/event", function (req, res) {
   res.render("event");
