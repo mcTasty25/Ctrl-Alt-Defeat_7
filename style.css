@@ -1,3 +1,10 @@
+.main-heading,
+.notice-content,
+.select-style,
+h3 {
+  text-align: center;
+}
+
 .navbar,
 body {
   margin: 0;
