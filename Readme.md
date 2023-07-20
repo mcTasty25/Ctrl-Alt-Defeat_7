@@ -4,6 +4,6 @@ Description: We are creating a dashboard to incorporate data from different sour
 
 Tech Stack: JavaScript (Python maybe used too)
 
-Features: Anility to view data about the city in different categories at the same place. Ability to report incidents and view incidents reported by other users.
+Features: Ability to view data about the city in different categories at the same place. Ability to report incidents and view incidents reported by other users.
 
 Originality: We're somewhat inspired from DownDetector. However, the project is different in a lot of ways.
