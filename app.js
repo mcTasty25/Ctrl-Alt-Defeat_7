@@ -9,182 +9,194 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/home", function (req, res) {
-  const apiKey = "28cf63de-3ecf-4168-b31d-63a0c075bce8";
   const defaultCity = "Kathmandu";
-
+  const apikey = "42f1e37e883f929da0d0e4e0fdbbed9c";
+  const unit = "metric";
   const Weather_url =
-    "https://api.airvisual.com/v2/city?city=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
     defaultCity +
-    "&state=Central%20Region&country=Nepal&key=" +
-    apiKey;
-
-  const Pollution_url =
-    "https://api.airvisual.com/v2/city?city=" +
-    defaultCity +
-    "&state=Central%20Region&country=Nepal&key=" +
-    apiKey;
+    "&appid=" +
+    apikey +
+    "&units=" +
+    unit;
 
   const locationUrl =
-    "https://api.airvisual.com/v2/city?city=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
     defaultCity +
-    "&state=Central%20Region&country=Nepal&key=" +
-    apiKey;
+    "&appid=" +
+    apikey +
+    "&units=" +
+    unit;
 
   let temp, city, airQualityIndex, lat, long;
 
   https.get(Weather_url, function (weatherResponse) {
-    let weatherData = "";
-
     weatherResponse.on("data", function (data) {
-      weatherData += data;
-    });
+      const parsedWeatherData = JSON.parse(data);
+      const icon = parsedWeatherData.weather[0].icon;
+      const imgUrl = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
+      temp = parsedWeatherData.main.temp;
+      city = parsedWeatherData.name;
+      humidity = parsedWeatherData.main.humidity;
+      windSpeed = parsedWeatherData.wind.speed;
 
-    weatherResponse.on("end", function () {
-      const parsedWeatherData = JSON.parse(weatherData);
-      temp = parsedWeatherData.data.current.weather.tp;
-      city = parsedWeatherData.data.city;
-      humidity = parsedWeatherData.data.current.weather.hu;
-      windSpeed = parsedWeatherData.data.current.weather.ws;
-
-      https.get(Pollution_url, function (pollutionResponse) {
-        let pollutionData = "";
-
-        pollutionResponse.on("data", function (data) {
-          pollutionData += data;
-        });
-
-        pollutionResponse.on("end", function () {
-          const parsedPollutionData = JSON.parse(pollutionData);
-          airQualityIndex = parsedPollutionData.data.current.pollution.aqius;
-
-          https.get(locationUrl, function (locationResponse) {
-            let locationData = "";
-
-            locationResponse.on("data", function (data) {
-              locationData += data;
+      https.get(locationUrl, function (locationResponse) {
+        locationResponse.on("data", function (data) {
+          try {
+            const parsedLocationData = JSON.parse(data);
+            lat = parsedLocationData.coord.lat;
+            long = parsedLocationData.coord.lon;
+            res.render("home", {
+              temp,
+              humidity,
+              windSpeed,
+              city,
+              lat,
+              long,
+              imgUrl,
             });
-
-            locationResponse.on("end", function () {
-              try {
-                const parsedLocationData = JSON.parse(locationData);
-
-                if (parsedLocationData?.data?.location?.coordinates) {
-                  lat = parsedLocationData.data.location.coordinates[1];
-                  long = parsedLocationData.data.location.coordinates[0];
-                } else {
-                  lat = 27.7;
-                  long = 85.31;
-                }
-
-                res.render("home", {
-                  temp,
-                  humidity,
-                  windSpeed,
-                  city,
-                  airQualityIndex,
-                  lat,
-                  long,
-                });
-              } catch (error) {
-                console.error("Error processing API response:", error);
-                res.status(500).send("Internal Server Error");
-              }
-            });
-          });
+          } catch (error) {
+            console.error("Error processing API response:", error);
+            res.status(500).send("Internal Server Error");
+          }
         });
       });
     });
   });
 });
 app.post("/home", function (req, res) {
-  const apiKey = "28cf63de-3ecf-4168-b31d-63a0c075bce8";
   const defaultCity = req.body.cityName;
-
+  const apikey = "42f1e37e883f929da0d0e4e0fdbbed9c";
+  const unit = "metric";
   const Weather_url =
-    "https://api.airvisual.com/v2/city?city=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
     defaultCity +
-    "&state=Central%20Region&country=Nepal&key=" +
-    apiKey;
-
-  const Pollution_url =
-    "https://api.airvisual.com/v2/city?city=" +
-    defaultCity +
-    "&state=Central%20Region&country=Nepal&key=" +
-    apiKey;
+    "&appid=" +
+    apikey +
+    "&units=" +
+    unit;
 
   const locationUrl =
-    "https://api.airvisual.com/v2/city?city=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
     defaultCity +
-    "&state=Central%20Region&country=Nepal&key=" +
-    apiKey;
+    "&appid=" +
+    apikey +
+    "&units=" +
+    unit;
 
   let temp, city, airQualityIndex, lat, long;
 
   https.get(Weather_url, function (weatherResponse) {
-    let weatherData = "";
-
     weatherResponse.on("data", function (data) {
-      weatherData += data;
-    });
+      const parsedWeatherData = JSON.parse(data);
+      const icon = parsedWeatherData.weather[0].icon;
+      const imgUrl = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
+      temp = parsedWeatherData.main.temp;
+      city = parsedWeatherData.name;
+      humidity = parsedWeatherData.main.humidity;
+      windSpeed = parsedWeatherData.wind.speed;
 
-    weatherResponse.on("end", function () {
-      const parsedWeatherData = JSON.parse(weatherData);
-      temp = parsedWeatherData.data.current.weather.tp;
-      city = parsedWeatherData.data.city;
-      humidity = parsedWeatherData.data.current.weather.hu;
-      windSpeed = parsedWeatherData.data.current.weather.ws;
+      https.get(locationUrl, function (locationResponse) {
+        locationResponse.on("data", function (data) {
+          try {
+            const parsedLocationData = JSON.parse(data);
+            lat = parsedLocationData.coord.lat;
+            long = parsedLocationData.coord.lon;
 
-      https.get(Pollution_url, function (pollutionResponse) {
-        let pollutionData = "";
-
-        pollutionResponse.on("data", function (data) {
-          pollutionData += data;
-        });
-
-        pollutionResponse.on("end", function () {
-          const parsedPollutionData = JSON.parse(pollutionData);
-          airQualityIndex = parsedPollutionData.data.current.pollution.aqius;
-
-          https.get(locationUrl, function (locationResponse) {
-            let locationData = "";
-
-            locationResponse.on("data", function (data) {
-              locationData += data;
+            res.render("home", {
+              temp,
+              humidity,
+              windSpeed,
+              city,
+              lat,
+              long,
+              imgUrl,
             });
-
-            locationResponse.on("end", function () {
-              try {
-                const parsedLocationData = JSON.parse(locationData);
-
-                if (parsedLocationData?.data?.location?.coordinates) {
-                  lat = parsedLocationData.data.location.coordinates[1];
-                  long = parsedLocationData.data.location.coordinates[0];
-                } else {
-                  lat = 27.7;
-                  long = 85.31;
-                }
-
-                res.render("home", {
-                  temp,
-                  humidity,
-                  windSpeed,
-                  city,
-                  airQualityIndex,
-                  lat,
-                  long,
-                });
-              } catch (error) {
-                console.error("Error processing API response:", error);
-                res.status(500).send("Internal Server Error");
-              }
-            });
-          });
+          } catch (error) {
+            console.error("Error processing API response:", error);
+            res.status(500).send("Internal Server Error");
+          }
         });
       });
     });
   });
 });
 
-app.listen(5000, function () {
-  console.log("Server started at port 5000");
+app.get("/report", function (req, res) {
+  res.render("report");
+});
+
+app.get("/traffic", function (req, res) {
+  const defaultCity = "Kathmandu";
+  const apikey = "42f1e37e883f929da0d0e4e0fdbbed9c";
+  const unit = "metric";
+  const locationUrl =
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    defaultCity +
+    "&appid=" +
+    apikey +
+    "&units=" +
+    unit;
+  let lat, long;
+
+  https.get(locationUrl, function (locationResponse) {
+    locationResponse.on("data", function (data) {
+      try {
+        const parsedLocationData = JSON.parse(data);
+        lat = parsedLocationData.coord.lat;
+        long = parsedLocationData.coord.lon;
+
+        res.render("traffic", {
+          lat,
+          long,
+        });
+      } catch (error) {
+        console.error("Error processing API response:", error);
+        res.status(500).send("Internal Server Error");
+      }
+    });
+  });
+});
+app.post("/traffic", function (req, res) {
+  const defaultCity = res.body.cityName;
+  const apikey = "42f1e37e883f929da0d0e4e0fdbbed9c";
+  const unit = "metric";
+  const locationUrl =
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    defaultCity +
+    "&appid=" +
+    apikey +
+    "&units=" +
+    unit;
+  let lat, long;
+
+  https.get(locationUrl, function (locationResponse) {
+    locationResponse.on("data", function (data) {
+      try {
+        const parsedLocationData = JSON.parse(data);
+        lat = parsedLocationData.coord.lat;
+        long = parsedLocationData.coord.lon;
+
+        res.render("traffic", {
+          lat,
+          long,
+        });
+      } catch (error) {
+        console.error("Error processing API response:", error);
+        res.status(500).send("Internal Server Error");
+      }
+    });
+  });
+});
+
+app.get("/contacts", function (req, res) {
+  res.render("contacts");
+});
+
+app.get("/event", function (req, res) {
+  res.render("event");
+});
+
+app.listen(3000, function () {
+  console.log("Server started at port 3000");
 });
