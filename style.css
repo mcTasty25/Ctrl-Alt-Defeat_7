@@ -1,3 +1,10 @@
+.main-heading,
+.notice-content,
+.select-style,
+h3 {
+    text-align: center
+}
+
 .navbar,
 body {
     margin: 0;
@@ -8,11 +15,6 @@ body {
 .navbar li a {
     padding: .5rem 1rem;
     transition: background-color .3s, transform .2s
-}
-
-body {
-    font-family: Mukta, sans-serif;
-    background-color: #e7efe195
 }
 
 .header {
@@ -82,8 +84,7 @@ body {
 
 .notice-content {
     font-size: 16px;
-    color: #333;
-    text-align: center
+    color: #333
 }
 
 .landing-content {
@@ -152,18 +153,74 @@ body {
 }
 
 .main-heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding-top: 25px;
     font-style: bold;
     font-size: 30px;
     color: #333;
-    font-weight: 800;
-    text-align: center
+    font-weight: 800
 }
 
 .card-box {
-    border: 1px #e3ffcd;
-    background: rgb(231, 239, 225);
-    background: radial-gradient(circle, rgba(231, 239, 225, 0.20199713186055668) 0%, rgba(231, 239, 225, 1) 100%);
+    border: 1px;
+    background: #e7efe1;
+    background: radial-gradient(circle, rgba(231, 239, 225, .20199713186055668) 0, #e7efe1 100%);
+    box-shadow: 1px 1px 5px 1px #2b282826;
+    padding: 2.5rem
+}
+
+.city-selection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column
+}
+
+.select-style {
+    width: 90%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem
+}
+
+
+body {
+    background-color: #e7efe195;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif
+}
+
+select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer
+}
+
+select:hover {
+    border-color: #555
+}
+
+select:focus {
+    outline: 0;
+    border-color: #007bff;
+    box-shadow: 0 0 5px #007bff
+}
+
+.change-city{
+    height: fit-content;
+    font-size: 15px;
+    margin-bottom: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: #007bff3b;
 }
 
 @media (max-width:768px) {
