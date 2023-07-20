@@ -194,8 +194,8 @@ app.post("/traffic", function (req, res) {
 });
 
 app.get("/emergency", function (req, res) {
-    res.render("emergency");
-  });
+  res.render("emergency");
+});
 
 app.get("/event", function (req, res) {
   res.render("event");
