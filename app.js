@@ -2,6 +2,7 @@ const express = require("express");
 const https = require("https");
 const bodyParser = require("body-parser");
 const path = require("path");
+const mysql = require("mysql");
 
 const app = express();
 app.set("view engine", "ejs");
@@ -28,7 +29,7 @@ app.get("/home", function (req, res) {
     "&units=" +
     unit;
 
-  let temp, city, airQualityIndex, lat, long;
+  let temp, city, lat, long, windSpeed, description;
 
   https.get(Weather_url, function (weatherResponse) {
     weatherResponse.on("data", function (data) {
@@ -39,7 +40,7 @@ app.get("/home", function (req, res) {
       city = parsedWeatherData.name;
       humidity = parsedWeatherData.main.humidity;
       windSpeed = parsedWeatherData.wind.speed;
-
+      description = parsedWeatherData.weather[0].description;
       https.get(locationUrl, function (locationResponse) {
         locationResponse.on("data", function (data) {
           try {
@@ -54,6 +55,7 @@ app.get("/home", function (req, res) {
               lat,
               long,
               imgUrl,
+              description,
             });
           } catch (error) {
             console.error("Error processing API response:", error);
@@ -84,7 +86,7 @@ app.post("/home", function (req, res) {
     "&units=" +
     unit;
 
-  let temp, city, airQualityIndex, lat, long;
+  let temp, city, lat, long, windSpeed, description;
 
   https.get(Weather_url, function (weatherResponse) {
     weatherResponse.on("data", function (data) {
@@ -95,6 +97,7 @@ app.post("/home", function (req, res) {
       city = parsedWeatherData.name;
       humidity = parsedWeatherData.main.humidity;
       windSpeed = parsedWeatherData.wind.speed;
+      description = parsedWeatherData.weather[0].description;
 
       https.get(locationUrl, function (locationResponse) {
         locationResponse.on("data", function (data) {
@@ -111,6 +114,7 @@ app.post("/home", function (req, res) {
               lat,
               long,
               imgUrl,
+              description,
             });
           } catch (error) {
             console.error("Error processing API response:", error);
@@ -186,6 +190,24 @@ app.post("/traffic", function (req, res) {
         res.status(500).send("Internal Server Error");
       }
     });
+  });
+});
+
+const con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "password",
+  database: "hexgenius",
+});
+
+app.get("/emergency", function (req, res) {
+  const sql = "SELECT * FROM impcontacts";
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    const results = JSON.parse(JSON.stringify(result));
+    const cname = results.map((item) => item.name);
+    const phno = results.map((item) => item.phone_number);
+    res.render("emergency", { cname, phno });
   });
 });
 

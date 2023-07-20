@@ -1,4 +1,7 @@
-.navbar,
+.navbar {
+  margin: 0;
+  padding: 0;
+}
 body {
   margin: 0;
   padding: 0;
@@ -20,7 +23,7 @@ body {
 
 body {
   font-family: Mukta, sans-serif;
-  background-color: #e7efe195;
+  background-color: #071952;
 }
 
 .header {
@@ -30,7 +33,7 @@ body {
   background-color: #e7efe1;
   color: #3a3335;
   position: sticky;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .logo {
@@ -116,7 +119,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #e7efe1;
+  background-color: #94c470;
   border-radius: 10px;
 }
 
@@ -188,9 +191,13 @@ body {
   background: rgb(231, 239, 225);
   background: radial-gradient(
     circle,
-    rgba(231, 239, 225, 0.20199713186055668) 0%,
-    rgba(231, 239, 225, 1) 100%
+    rgba(27, 130, 214, 0.11) 0%,
+    rgb(231, 239, 225) 100%
   );
+  transition: 500ms ease;
+}
+.card-box:hover {
+  scale: 1.03;
 }
 .select-style {
   width: 10rem;

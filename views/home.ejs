@@ -41,7 +41,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                 <li><a href="/traffic">Live Traffic</a></li>
                 <li><a href="/contacts">Contact Numbers</a></li>
                 <li><a href="/event">Events</a></li>
-                <li><button id="nav-button">Emergency</button></li>
+                <li><a href="/emergency"><button id="nav-button">Emergency</button></a></li>
             </ul>
         </nav>
     </header>
@@ -67,6 +67,10 @@ google.maps.event.addDomListener(window, 'load', initialize);
                 <option value="Kirtipur">Kirtipur</option>
                 <option value="Chabahil">Chabahil</option>
                 <option value="Patan">Patan</option>
+                <option value="Kalanki">Kalanki</option>
+                <option value="Thankot">Thankot</option>
+                <option value="Dhapakhel">Dhapakhel</option>
+                <option value="New Baneshwor">New Baneshwor</option>
                 </select>
                 <button class="change-city" type="submit">Go</button>
                 </form>
@@ -81,26 +85,24 @@ google.maps.event.addDomListener(window, 'load', initialize);
                         <img src=<%= imgUrl%> alt="">
                     </div>
                     <div class="card-data">
-                        <p>T:<%= temp%>°C </p>
+                        <h6><%= city%></></h6>
+                        <h6>Temp:  <%= temp%>°C</h6>
                         
                     </div>
                 </div>
                 <div class="pollution-card card-box">
                     <div class="card-icon">
-                        <i class="fas fa-smog"></i>
+                        <img src="https://openweathermap.org/img/wn/50n@2x.png" alt="">
                     </div>
                     <div class="card-data">
-                        <h6>H:<%= humidity%></h6>
-                        <h6>W:<%= windSpeed%>m/s</h6>
+                        <h6>Hum:  <%= humidity%></h6>
+                        <h6>WS:  <%= windSpeed%>m/s</h6>
                     </div>
 
                 </div>
-                <div class="forecast-link">
-                    <a href="forecast.html">Forecast</a>
-                </div>
             
             <div class="suggestion-card card-box">
-                <p>Suggested to carry umbrella</p>
+                <h5>Looks Like <%=description%>!</h5>
             </div>
         </div>
 
