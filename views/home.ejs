@@ -9,15 +9,34 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <h2><%= lat%></h2>
+    <h2><%=long%></h2>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script>
+function initialize() {
+  var myLatlng = new google.maps.LatLng('<%= lat%>','<%= long%>');
+  var mapOptions = {
+    zoom: 13,
+    center: myLatlng
+  }
+
+  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+  var trafficLayer = new google.maps.TrafficLayer();
+  trafficLayer.setMap(map);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
 </head>
 
 <body>
-
     <header class="header">
         <div class="logo">{{Website}}</div>
         <nav class="nav">
             <ul class="navbar">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="home.html">Home</a></li>
                 <li><a href="report.html">Report</a></li>
                 <li><a href="live-traffic.html">Live Traffic</a></li>
                 <li><a href="contact-numbers">Contact Numbers</a></li>
@@ -39,7 +58,7 @@
         </div>
 
         <div class="main-heading">
-            <h1>Today in Kathmandu</h1>
+            <h1>Today in <%= city %></h1>
         </div>
 
         <div class="landing-content">
@@ -49,7 +68,9 @@
                         <i class="fas fa-cloud-sun"></i>
                     </div>
                     <div class="card-data">
-                        <p>16°C</p>
+                        <p>T:<%= temp%>°C </p>
+                        <h6>H:<%= humidity%></h6>
+                        <h6>W:<%= windSpeed%>m/s</h6>
                     </div>
                 </div>
                 <div class="pollution-card card-box">
@@ -57,7 +78,7 @@
                         <i class="fas fa-smog"></i>
                     </div>
                     <div class="card-data">
-                        <p>PM 2.5</p>
+                        <p>AQI <%= airQualityIndex%></p>
                     </div>
 
                 </div>
@@ -76,12 +97,12 @@
 
             <div class="live-traffic card-box">
                 <h4>Live Traffic</h4>
+                 <div id="map-canvas"></div>
+            </div>
+
             </div>
 
         </div>
-    
-
-    <script src="script.js"></script>
     </div>
 </body>
 

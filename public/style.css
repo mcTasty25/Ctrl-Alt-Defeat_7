@@ -3,6 +3,12 @@ body {
   margin: 0;
   padding: 0;
 }
+#map-canvas {
+  height: 400px;
+  width: 400px;
+  margin: 20px;
+  padding: 0px;
+}
 
 #nav-button,
 .navbar li a {
