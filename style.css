@@ -160,6 +160,12 @@ body {
     text-align: center
 }
 
+.card-box {
+    border: 1px #e3ffcd;
+    background: rgb(231, 239, 225);
+    background: radial-gradient(circle, rgba(231, 239, 225, 0.20199713186055668) 0%, rgba(231, 239, 225, 1) 100%);
+}
+
 @media (max-width:768px) {
 
     .header,
