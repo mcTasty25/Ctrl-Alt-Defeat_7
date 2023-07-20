@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
-    <h2><%= lat%></h2>
-    <h2><%=long%></h2>
+    <h2 class="hidden"><%= lat%></h2>
+    <h2 class="hidden"><%=long%></h2>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script>
 function initialize() {
@@ -58,6 +58,19 @@ google.maps.event.addDomListener(window, 'load', initialize);
         </div>
 
         <div class="main-heading">
+            <div class="card-box city-selection">
+                <h5>Select a City:</h5>
+              <form action="/home" method="post">
+                <select class="select-style" name="cityName">
+                <option value="Kathmandu" selected>Kathmandu</option>
+                <option value="Bhaktapur">Bhaktapur</option>
+                <option value="Kirtipur">Kirtipur</option>
+                <option value="MadhyapurThimi">Madhyapur Thimi</option>
+                <option value="Patan">Patan</option>
+                </select>
+                <button class="change-city" type="submit">Submit</button>
+                </form>
+            </div>
             <h1>Today in <%= city %></h1>
         </div>
 

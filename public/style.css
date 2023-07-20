@@ -9,7 +9,9 @@ body {
   margin: 20px;
   padding: 0px;
 }
-
+.hidden {
+  display: none;
+}
 #nav-button,
 .navbar li a {
   padding: 0.5rem 1rem;
@@ -136,6 +138,21 @@ body {
   color: #333;
   font-weight: 600;
 }
+.city-selection {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+.change-city {
+  height: fit-content;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 10px;
+  background-color: #007bff3b;
+}
 
 .events-list,
 .live-traffic {
@@ -174,6 +191,14 @@ body {
     rgba(231, 239, 225, 0.20199713186055668) 0%,
     rgba(231, 239, 225, 1) 100%
   );
+}
+.select-style {
+  width: 10rem;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
 }
 
 @media (max-width: 768px) {
