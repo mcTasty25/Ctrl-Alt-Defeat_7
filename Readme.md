@@ -1,6 +1,6 @@
 Project Title: Multi-Source Data Hub
 
-Description: We are creating a dashboard to incorporate data from different sources to help users get it at the same place. Users will be able to see the weather, air quality, live traffic data and other information at the same place. We are also trying to add a community based incident reporting system for different important things such electricity cut-off, internet outage etc.
+Description: We are creating a dashboard to incorporate data from different sources to help users get it at the same place. Users will be able to see the weather, air quality, live traffic data, and other information at the same place. We are also trying to add a community-based incident reporting system for different important things such as electricity cut-offs, internet outages etc.
 
 Tech Stack: JavaScript (Python maybe used too)
 
